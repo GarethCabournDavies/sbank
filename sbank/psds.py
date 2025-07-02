@@ -23,7 +23,7 @@ import lalsimulation as lalsim
 import lal
 from lal import series as lalseries
 
-from ligo.lw import (param, utils)
+from igwn_ligolw import (param, utils as ligolw_utils)
 
 seterr(over="ignore")  # the PSD overflows frequently, but that's OK
 
@@ -156,5 +156,5 @@ def psd_instrument_dict(elem):
 
 def read_psd(filename, verbose=False):
     return psd_instrument_dict(
-        utils.load_filename(filename, verbose=verbose, contenthandler=lalseries.PSDContentHandler),
+        ligolw_utils.load_filename(filename, verbose=verbose, contenthandler=lalseries.PSDContentHandler),
     )
