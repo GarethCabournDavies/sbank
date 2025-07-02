@@ -23,7 +23,8 @@ import lalsimulation as lalsim
 import lal
 from lal import series as lalseries
 
-from igwn_ligolw import (param, utils as ligolw_utils)
+from igwn_ligolw import utils as ligolw_utils
+from igwn_ligolw.ligolw import Param
 
 seterr(over="ignore")  # the PSD overflows frequently, but that's OK
 
@@ -149,7 +150,7 @@ def psd_instrument_dict(elem):
             continue
         if lw.getAttribute(u"Name") != u"REAL8FrequencySeries":
             continue
-        ifo = param.get_pyvalue(lw, u"instrument")
+        ifo = Param.get_pyvalue(lw, u"instrument")
         out[ifo] = lalseries.parse_REAL8FrequencySeries(lw)
     return out
 
